@@ -1,14 +1,14 @@
 import React, {Component} from 'react';
-import Header from "../../backend/header/Header";
+import Header from "../header/Header";
 import Footer from "../footer/Footer";
 
 export default class Home extends Component {
   render() {
     return (
       <div>
-        <Header />
+        <Header location={this.props.location}/>
         {this.props.children}
-        <Footer />
+        <Footer location={this.props.location}/>
       </div>
     );
   }

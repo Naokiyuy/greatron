@@ -2,6 +2,11 @@ import React, {Component} from 'react';
 
 export default class Footer extends Component {
   render() {
+    const {location} = this.props;
+
+    if(location.pathname === '/backend/login') {
+      return false;
+    }
     return (
       <div className="footer_wrapper">
         <footer>

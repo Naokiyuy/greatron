@@ -7,7 +7,12 @@ import bodyParser from 'body-parser';
 import connectTimeout from 'connect-timeout';
 import errorhandler from 'errorhandler';
 import fileUpload from 'express-fileupload';
+import passport from 'passport';
+// var env = require('dotenv').load();
 import productController from './api/product/controllers/product-controller';
+import userController from './api/user/controllers/user-controller';
+
+import Models from './models';
 
 const env = process.env.NODE_ENV || 'development';
 const isDev = env === 'development';
@@ -47,8 +52,8 @@ if (isDev) {
   app.use(middleware);
   app.use(require('webpack-hot-middleware')(compiler));
   app.use(session({
-    secret: 'blueplanet',
-    name: 'council',
+    secret: 'greatron',
+    name: 'greatron',
     key: 'sid',
     cookie: {
       maxAge: 86400000,
@@ -59,8 +64,8 @@ if (isDev) {
   }));
 } else {
   app.use(session({
-    secret: 'blueplanet',
-    name: 'council',
+    secret: 'greatron',
+    name: 'greatron',
     key: 'sid',
     cookie: {
       maxAge: 86400000,
@@ -73,8 +78,12 @@ if (isDev) {
 
 app.use(connectTimeout(300000));
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({extended: false}));
+app.use(bodyParser.urlencoded({extended: true}));
 app.use(checkAuth);
+
+// passport
+app.use(passport.initialize());
+app.use(passport.session());
 
 // default options
 app.use(fileUpload({limits: {fileSize: 50 * 1024 * 1024}}));
@@ -83,6 +92,7 @@ app.use(fileUpload({limits: {fileSize: 50 * 1024 * 1024}}));
 
 // register routes
 productController.routes(app);
+userController.routes(app);
 
 // error handlers
 // development error handler

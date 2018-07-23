@@ -68,7 +68,10 @@ ReactDOM.render(
           <Route name="Contact Us" path="/contactus" component={(props) => dynamicImport(props, './frontend/contactus/ContactUs')}/>
         </Route>
         <Route name="" path="/backend" component={(props) => dynamicImport(props, './backend/home/Home')}>
-
+          <IndexRoute component={(props) => dynamicImport(props, './backend/home/IndexPage')}/>
+          <Route name="Index" path="/backend/index" component={(props) => dynamicImport(props, './backend/home/IndexPage')}/>
+          <Route name="Index" path="/backend/login" component={(props) => dynamicImport(props, './backend/content/Login')}/>
+          <Route name="Index" path="/backend/list-products" component={(props) => dynamicImport(props, './backend/content/ListProducts')}/>
         </Route>
       </Route>
     </Router>

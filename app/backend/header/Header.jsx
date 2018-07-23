@@ -3,6 +3,11 @@ import {Link} from "react-router";
 
 export default class Header extends Component {
   render() {
+    const {location} = this.props;
+
+    if(location.pathname === '/backend/login') {
+      return false;
+    }
     return (
       <div className="header_wrapper">
         <header>

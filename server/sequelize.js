@@ -1,8 +1,10 @@
+var path = require('path');
 const Sequelize = require('sequelize');
-const ProductModel = require('./api/product/models/Product');
+const env = process.env.NODE_ENV || 'development';
+var config = require(path.join(__dirname, '.', 'config', 'config.js'))[env];
 
 // database connection
-const dbOptions = {
+const dbOptions = config || {
   database: 'greatron',
   username: 'greatron',
   password: 'greatron',
@@ -20,12 +22,9 @@ const dbOptions = {
 
 let sequelize = new Sequelize(dbOptions.database, dbOptions.username, dbOptions.password, dbOptions);
 
-const Product = ProductModel(sequelize, Sequelize);
-sequelize.sync({force: true})
-  .then(() => {
-    console.log(`Database & tables created!`)
-  });
-
 module.exports = {
-  Product
+  db: {
+    sequelize,
+    Sequelize
+  }
 };

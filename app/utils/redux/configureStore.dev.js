@@ -6,13 +6,16 @@ import {routerReducer, routerMiddleware} from 'react-router-redux';
 import {reducer as formReducer} from 'redux-form';
 import DevTools from "./DevTools";
 
+import backendReducer from '../../backend/backendReducer';
+
 const middleware = routerMiddleware(browserHistory);
 
 export default function configureStore(initialState) {
   return createStore(
     combineReducers({
       routing: routerReducer,
-      form: formReducer
+      form: formReducer,
+      backend: backendReducer
     }),
     initialState,
     compose(

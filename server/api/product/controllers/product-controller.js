@@ -1,13 +1,14 @@
-const {Product} = require('../../../sequelize');
+import Models from '../../../models';
 
 const controller = {
-  routes
+  routes,
+  listProducts
 };
 
 export default controller;
 
 function routes(app) {
-
+  app.all('/api/products/list', controller.listProducts);
 }
 
 function queryProductById(req, res, next) {
@@ -24,4 +25,11 @@ function updateProduct(req, res, next) {
 
 function deleteProduct(req, res, next) {
 
+}
+
+function listProducts(req, res, next) {
+  Models.Product.findAll().then(products => {
+    console.log(products);
+    return res.type('application/json').send(products);
+  });
 }
