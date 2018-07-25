@@ -10,3 +10,4 @@ server/uploads
 /svninfo.txt
 /scminfo.txt
 console-ui-note.txt
+yarn-error.log
