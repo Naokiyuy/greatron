@@ -16,10 +16,10 @@ function uploadFile(req, res, next) {
   if (!files)
     return res.status(400).send('No files were uploaded.');
 
-  let profileFile = files.file;
+  let uploadFile = files.file;
   const filepath = `/vol/web/upload/`;
   const filename = `${randomString()}.jpg`;
-  profileFile.mv(filepath + filename, function(err) {
+  uploadFile.mv(filepath + filename, function(err) {
     if (err) {
       return next(err);
     }

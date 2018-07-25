@@ -87,6 +87,7 @@
     "react-content-loader": "^3.1.2",
     "react-custom-scrollbars": "^4.2.1",
     "react-dom": "^16.4.0",
+    "react-dropzone": "^4.2.13",
     "react-ellipsis-text": "^1.0.0",
     "react-ga": "^2.5.3",
     "react-hot-loader": "^4.0.0",

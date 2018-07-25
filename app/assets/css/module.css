@@ -1216,9 +1216,6 @@ a {
     padding: 0px 10px;
     height: 40px;
     margin-right: 8px; }
-  .simple-search .search_area input[type=text]::-webkit-input-placeholder {
-    color: #c0c0c0;
-    font-size: 14px; }
   .simple-search .search_area input[type=text]:-ms-input-placeholder {
     color: #c0c0c0;
     font-size: 14px; }
@@ -1317,9 +1314,6 @@ a {
     padding: 0px 10px;
     height: 40px;
     margin-right: 8px; }
-  .simple-search .search_area input[type=text]::-webkit-input-placeholder {
-    color: #c0c0c0;
-    font-size: 14px; }
   .simple-search .search_area input[type=text]:-ms-input-placeholder {
     color: #c0c0c0;
     font-size: 14px; }
@@ -1430,7 +1424,7 @@ a {
   height: 45px;
   padding-left: 10px; }
 
-.login .submit {
+.login .summit {
   display: block;
   width: 200px;
   height: 45px;
@@ -1448,7 +1442,7 @@ a {
   border-radius: 3px; }
 
 .backend_wrapper {
-  width: 600px;
+  width: 1400px;
   margin: 0 auto;
   background: #eee;
   margin-top: 30px;
@@ -1601,6 +1595,61 @@ a {
   padding: 20px;
   margin-bottom: 20px; }
 
+.product-item table tr {
+  border-bottom: 1px solid #c0c0c0; }
+
+.product-item table tr td {
+  padding: 10px;
+  vertical-align: top;
+  color: #888;
+  font-size: 14px; }
+
+.product-item table tr td .btn {
+  width: 100%;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -ms-flex-align: center;
+  align-items: center; }
+
+.product-item table tr td .btn .edit {
+  width: 100px;
+  height: 30px;
+  margin: 0 10px;
+  border-radius: 3px;
+  background: #5AB331;
+  color: #FFF;
+  cursor: pointer;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -ms-flex-align: center;
+  align-items: center;
+  margin-bottom: 10px; }
+
+.product-item table tr td .btn .cancel {
+  width: 100px;
+  height: 30px;
+  margin: 0 10px;
+  border-radius: 3px;
+  background: red;
+  color: #FFF;
+  cursor: pointer;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -ms-flex-align: center;
+  align-items: center; }
+
 .product-item .itme-num {
   font-size: 20px;
   color: #FFF;
@@ -1617,37 +1666,59 @@ a {
   -ms-flex-align: center;
   align-items: center; }
 
-.product-item .title {
-  color: #5AB331;
-  font-size: 25px;
-  margin-bottom: 10px; }
-
-.product-item .content_a {
-  color: #222;
-  margin-bottom: 20px;
-  font-size: 14px; }
-
-.product-item .content_b {
-  color: #888;
-  margin-bottom: 20px;
-  font-size: 14px; }
-
-.product-item .content_c {
-  color: #888;
-  margin-bottom: 20px;
-  font-size: 14px; }
-
-.product-item .btn {
+.product-item .wrapper {
   display: -ms-flexbox;
   display: flex;
   -ms-flex-direction: row;
   flex-direction: row;
   -ms-flex-pack: center;
   justify-content: center;
+  -ms-flex-align: start;
+  align-items: flex-start; }
+
+.product-item .wrapper .b-img {
+  width: 20%; }
+
+.product-item .wrapper .title {
+  width: 15%;
+  color: #5AB331;
+  font-size: 25px;
+  margin-bottom: 10px;
+  padding: 0 5px; }
+
+.product-item .wrapper .content_a {
+  width: 15%;
+  color: #222;
+  margin-bottom: 20px;
+  font-size: 14px;
+  padding: 0 5px; }
+
+.product-item .wrapper .content_b {
+  width: 15%;
+  color: #888;
+  margin-bottom: 20px;
+  font-size: 14px;
+  padding: 0 5px; }
+
+.product-item .wrapper .content_c {
+  width: 20%;
+  color: #888;
+  margin-bottom: 20px;
+  font-size: 14px;
+  padding: 0 5px; }
+
+.product-item .wrapper .btn {
+  width: 15%;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -ms-flex-pack: center;
+  justify-content: center;
   -ms-flex-align: center;
   align-items: center; }
 
-.product-item .btn .edit {
+.product-item .wrapper .btn .edit {
   width: 120px;
   height: 40px;
   margin: 0 10px;
@@ -1662,9 +1733,10 @@ a {
   -ms-flex-pack: center;
   justify-content: center;
   -ms-flex-align: center;
-  align-items: center; }
+  align-items: center;
+  margin-bottom: 10px; }
 
-.product-item .btn .cancel {
+.product-item .wrapper .btn .cancel {
   width: 120px;
   height: 40px;
   margin: 0 10px;

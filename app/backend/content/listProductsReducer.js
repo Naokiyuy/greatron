@@ -1,5 +1,7 @@
 const LIST = 'greatron/backend/LIST';
 const FETCH_FINISHED = 'greatron/backend/FETCH_FINISHED';
+const DELETE_PRODUCT = 'greatron/backend/DELETE_PRODUCT';
+const DELETE_PRODUCT_SUCCESS = 'greatron/backend/DELETE_PRODUCT_SUCCESS';
 
 const initialState = {};
 
@@ -41,5 +43,21 @@ function fetchFinished(products) {
   return {
     type: FETCH_FINISHED,
     products
+  };
+}
+
+export function deleteProduct(id) {
+  return dispatch => {
+    dispatch({type: DELETE_PRODUCT});
+    return fetch('/api/products/delete', {
+      method: 'POST',
+      credentials: 'same-origin',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({id})
+    }).then(response => response.json())
+      .then(json => dispatch({type: DELETE_PRODUCT_SUCCESS}));
   };
 }

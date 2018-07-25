@@ -11,6 +11,7 @@ import passport from 'passport';
 // var env = require('dotenv').load();
 import productController from './api/product/controllers/product-controller';
 import userController from './api/user/controllers/user-controller';
+import utilsController from './api/utils/controllers/utils-controller';
 
 import Models from './models';
 
@@ -93,6 +94,11 @@ app.use(fileUpload({limits: {fileSize: 50 * 1024 * 1024}}));
 // register routes
 productController.routes(app);
 userController.routes(app);
+utilsController.routes(app);
+
+Models.Product.sequelize.sync().then(function() {
+  console.log('database sync.');
+});
 
 // error handlers
 // development error handler
