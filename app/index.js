@@ -72,7 +72,6 @@ ReactDOM.render(
         <Route name="" path="/backend" component={(props) => dynamicImport(props, './backend/home/Home')}>
           <IndexRoute component={(props) => dynamicImport(props, './backend/content/ListProducts')}/>
           <Route name="Login" path="/backend/login" component={(props) => dynamicImport(props, './backend/content/Login')}/>
-          <Route name="Index" path="/backend/index" component={(props) => dynamicImport(props, './backend/home/IndexPage')}/>
           <Route name="List Products" path="/backend/list-products" component={(props) => dynamicImport(props, './backend/content/ListProducts')}/>
           <Route name="Add Product" path="/backend/add-product" component={(props) => dynamicImport(props, './backend/content/AddorEditProduct')}/>
           <Route name="Add Product" path="/backend/edit-product/:id" component={(props) => dynamicImport(props, './backend/content/AddorEditProduct')}/>
