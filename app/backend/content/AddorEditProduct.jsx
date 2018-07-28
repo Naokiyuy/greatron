@@ -5,9 +5,16 @@ import {reduxForm} from 'redux-form';
 import * as actionCreators from './addorEditProductReducer';
 import FileUpload from '../../utils/fileupload/FileUpload';
 
+import { EditorState, convertToRaw, ContentState } from 'draft-js';
+import { Editor } from 'react-draft-wysiwyg';
+import draftToHtml from 'draftjs-to-html';
+
 @reduxForm({
   form: 'addoreditproductform',
-  fields: ['id', 'product_category', 'product_name', 'product_desc', 'product_spec', 'pdf_url', 'sub_title', 'feature', 'image_url'],
+  fields: [
+    'id', 'product_category', 'product_name', 'product_desc', 'productDescEditor', 'product_spec', 'productSpecEditor',
+    'pdf_url', 'sub_title', 'feature', 'featureEditor', 'image_url'
+  ],
   destroyOnUnmount: true
 }, state => ({
   isEditing: state.backend.productaddoredit.isEditing,
@@ -40,10 +47,18 @@ export default class AddorEditProduct extends Component {
     });
   };
 
+  onChange = (value, textField, editor) => {
+    editor.onChange(value);
+    textField.onChange(draftToHtml(convertToRaw(value.getCurrentContent())));
+  };
+
   render() {
     const {
       handleSubmit, addProduct, isEditing,
-      fields: {id, product_category, product_name, product_desc, product_spec, pdf_url, sub_title, feature, image_url}
+      fields: {
+        id, product_category, product_name, product_desc, productDescEditor, product_spec, productSpecEditor,
+        pdf_url, sub_title, feature, featureEditor, image_url
+      }
     } = this.props;
     return (
       <div className="backend_wrapper">
@@ -70,12 +85,24 @@ export default class AddorEditProduct extends Component {
             </div>
             <div className="backend_row">
               <div className="upload_content">
-                <textarea name="" id="" cols="30" rows="5" placeholder="請輸入內容" {...product_desc}></textarea>
+                <Editor id={"description"}
+                        editorState={productDescEditor.value}
+                        toolbarClassName="toolbarClassName"
+                        wrapperClassName="wrapperClassName"
+                        editorClassName="editorClassName"
+                        onEditorStateChange={(v) => this.onChange(v, product_desc, productDescEditor)}
+                />
               </div>
             </div>
             <div className="backend_row">
               <div className="upload_content">
-                <textarea name="" id="" cols="30" rows="5" placeholder="請輸入規格" {...product_spec}></textarea>
+                <Editor id={"spec"}
+                        editorState={productSpecEditor.value}
+                        toolbarClassName="toolbarClassName"
+                        wrapperClassName="wrapperClassName"
+                        editorClassName="editorClassName"
+                        onEditorStateChange={(v) => this.onChange(v, product_spec, productSpecEditor)}
+                />
               </div>
             </div>
             <div className="backend_row">
@@ -89,7 +116,13 @@ export default class AddorEditProduct extends Component {
             </div>
             <div className="backend_row">
               <div className="upload_content">
-                <textarea name="" id="" cols="30" rows="5" placeholder="請輸入feature" {...feature}></textarea>
+                <Editor id={"spec"}
+                        editorState={featureEditor.value}
+                        toolbarClassName="toolbarClassName"
+                        wrapperClassName="wrapperClassName"
+                        editorClassName="editorClassName"
+                        onEditorStateChange={(v) => this.onChange(v, feature, featureEditor)}
+                />
               </div>
             </div>
           </div>
