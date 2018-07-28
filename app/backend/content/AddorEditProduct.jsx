@@ -51,7 +51,7 @@ export default class AddorEditProduct extends Component {
           <div className="index_num">
             {isEditing && <h6>{id.value}</h6>}
             <div className="backend_row">
-              <FileUpload fileField={image_url}/>
+              <FileUpload type="image" fileField={image_url} message="請上傳圖片"/>
             </div>
             <div className="backend_row">
               <div className="upload_content">
@@ -79,8 +79,7 @@ export default class AddorEditProduct extends Component {
               </div>
             </div>
             <div className="backend_row">
-              <div className="upload_pdf">PDF 上傳</div>
-              <p>product_01.PDF</p>
+              <FileUpload type="file" fileField={pdf_url} message="PDF 上傳"/>
             </div>
 
             <div className="backend_row">

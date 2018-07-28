@@ -17,8 +17,10 @@ function uploadFile(req, res, next) {
     return res.status(400).send('No files were uploaded.');
 
   let uploadFile = files.file;
+  console.log(uploadFile);
+  const ext = uploadFile.name.split('.').pop();
   const filepath = `/vol/web/upload/`;
-  const filename = `${randomString()}.jpg`;
+  const filename = `${randomString()}.${ext}`;
   uploadFile.mv(filepath + filename, function(err) {
     if (err) {
       return next(err);
