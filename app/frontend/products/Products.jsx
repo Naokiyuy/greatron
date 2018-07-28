@@ -39,7 +39,7 @@ export default class Products extends Component {
                   <img src={`/upload/${p.image_url}`} alt=""/>
                 </div>
                 <div className="product_info">
-                  <Link to={`/products/details/${p.id}`}>
+                  <Link to={`/products/${p.product_category}/details/${p.id}`}>
                     <h6>{p.product_name}</h6>
                   </Link>
                   <p>{p.product_desc}</p>
