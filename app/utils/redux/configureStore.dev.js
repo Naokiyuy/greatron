@@ -7,6 +7,7 @@ import {reducer as formReducer} from 'redux-form';
 import DevTools from "./DevTools";
 
 import backendReducer from '../../backend/backendReducer';
+import frontendReducer from '../../frontend/frontendReducer';
 import fileUploadReducer from '../fileupload/fileUploadReducer';
 
 const middleware = routerMiddleware(browserHistory);
@@ -17,6 +18,7 @@ export default function configureStore(initialState) {
       routing: routerReducer,
       form: formReducer,
       backend: backendReducer,
+      frontend: frontendReducer,
       fileupload: fileUploadReducer
     }),
     initialState,

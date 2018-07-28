@@ -7,7 +7,9 @@ const controller = {
   createProduct,
   updateProduct,
   deleteProduct,
-  queryProductById
+  queryProductById,
+  queryProductByCategory,
+  queryProductByParameters
 };
 
 export default controller;
@@ -18,6 +20,17 @@ function routes(app) {
   app.get('/api/products/query', controller.queryProductById);
   app.post('/api/products/update', controller.updateProduct);
   app.post('/api/products/delete', controller.deleteProduct);
+  app.get('/api/products/query-by-category', controller.queryProductByCategory);
+  app.get('/api/products/query-by-params', controller.queryProductByParameters);
+}
+
+function queryProductByCategory(req, res, next) {
+  const condition = {
+    where: {product_category: req.query.category},
+    limit: _.toNumber(req.query.pageSize),
+    offset: _.toNumber(req.query.offset)
+  };
+  return Models.Product.findAndCountAll(condition).then(result => res.type('application/json').send(result)).catch(e => next(e));
 }
 
 function queryProductById(req, res, next) {
@@ -66,4 +79,12 @@ function listProducts(req, res, next) {
     console.log(products);
     return res.type('application/json').send(products);
   });
+}
+
+function queryProductByParameters(req, res, next) {
+  const where = _.omitBy({
+    product_category: req.query.category,
+    product_name: req.query.name
+  }, _.isUndefined);
+  return Models.Product.findAndCountAll({where: where}).then(result => res.type('application/json').send(result)).catch(e => next(e));
 }

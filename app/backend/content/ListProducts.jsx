@@ -6,7 +6,7 @@ import * as actionCreators from './listProductsReducer';
 
 @reduxForm({
   form: 'productqueryform',
-  fields: ['product_category', 'product_name']
+  fields: ['category', 'name']
 }, state => ({
   listproducts: state.backend.productlist.list
 }), dispatch => bindActionCreators(actionCreators, dispatch))
@@ -23,15 +23,17 @@ export default class ListProducts extends Component {
     });
   };
 
+  searchProducts = () => setTimeout(() => this.props.searchProducts(this.props.values), 0);
+
   render() {
-    const {listproducts, handleSubmit, fields: {product_category, product_name}} = this.props;
+    const {listproducts, handleSubmit, searchProducts, resetSearch, fields: {category, name}} = this.props;
     return (
       <div className="backend_wrapper">
         <Link to="/backend/add-product" className="addproduct"><i className="fa fa-plus"/> Add Product</Link>
 
         <React.Fragment>
           <div className="product-item">
-            <form>
+            <form onSubmit={handleSubmit(searchProducts)} onChange={this.searchProducts}>
               <table>
                 <thead>
                 <tr>
@@ -46,7 +48,7 @@ export default class ListProducts extends Component {
                 <tr>
                   <th/>
                   <th>
-                    <select className="index_1" {...product_category}>
+                    <select className="index_1" {...category}>
                       <option value=""></option>
                       <option value="DESKTOP">DESKTOP</option>
                       <option value="WALLPLUG">WALLPLUG</option>
@@ -54,19 +56,20 @@ export default class ListProducts extends Component {
                       <option value="WIRELESS">WIRELESS</option>
                     </select>
                   </th>
-                  <th><input className="index_1" type="text" {...product_name}/></th>
+                  <th><input className="index_1" type="text" {...name}/></th>
                   <th/>
                   <th/>
                   <th/>
                   <th>
-                    <button type="button">Reset</button>
+                    <button type="button" onClick={resetSearch}>Reset</button>
                   </th>
                 </tr>
                 </thead>
                 <tbody>
                 {listproducts && listproducts.map(p =>
                   <tr>
-                    <td width="10%" valign="top"><img src={`/upload`} alt=""/></td>
+                    <td width="10%" valign="top"><img src={`/upload/${p.image_url}`} alt=""/></td>
+                    <td width="10%" valign="top">{p.product_category}</td>
                     <td width="10%" valign="top">{p.product_name}</td>
                     <td width="20%">{p.product_desc}</td>
                     <td width="25%" valign="top">{p.product_spec}</td>

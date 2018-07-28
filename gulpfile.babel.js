@@ -11,13 +11,13 @@ import fs from 'fs';
 
 gulp.task('archive', ['webpack', 'install-server-npm-dependencies'], function () {
   return gulp.src(['scminfo.txt', 'public/**', 'server/**', 'server/.babelrc'], {base: '.'})
-    .pipe(zip('pfcom-frontend.zip'))
+    .pipe(zip('greatron.zip'))
     .pipe(gulp.dest('dist'));
 });
 
 gulp.task('archive-without-yarn', ['webpack', 'scm-info'], function () {
   return gulp.src(['scminfo.txt', 'public/**', 'server/**', 'server/.babelrc'], {base: '.'})
-    .pipe(zip('greatron-frontend.zip'))
+    .pipe(zip('greatron.zip'))
     .pipe(gulp.dest('dist'));
 });
 
