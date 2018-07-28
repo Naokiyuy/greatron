@@ -13,7 +13,7 @@ import draftToHtml from 'draftjs-to-html';
   form: 'addoreditproductform',
   fields: [
     'id', 'product_category', 'product_name', 'product_desc', 'productDescEditor', 'product_spec', 'productSpecEditor',
-    'pdf_url', 'sub_title', 'feature', 'featureEditor', 'image_url'
+    'pdf_url', 'sub_title', 'feature', 'featureEditor', 'image_url', 'is_new', 'is_index'
   ],
   destroyOnUnmount: true
 }, state => ({
@@ -57,7 +57,7 @@ export default class AddorEditProduct extends Component {
       handleSubmit, addProduct, isEditing,
       fields: {
         id, product_category, product_name, product_desc, productDescEditor, product_spec, productSpecEditor,
-        pdf_url, sub_title, feature, featureEditor, image_url
+        pdf_url, sub_title, feature, featureEditor, image_url, is_new, is_index
       }
     } = this.props;
     return (
@@ -123,6 +123,16 @@ export default class AddorEditProduct extends Component {
                         editorClassName="editorClassName"
                         onEditorStateChange={(v) => this.onChange(v, feature, featureEditor)}
                 />
+              </div>
+            </div>
+            <div className="backend_row">
+              <div className="upload_content">
+                <input type="checkbox" {...is_new}/> 新品
+              </div>
+            </div>
+            <div className="backend_row">
+              <div className="upload_content">
+                <input type="checkbox" {...is_index}/> 首頁
               </div>
             </div>
           </div>

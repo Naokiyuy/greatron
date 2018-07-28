@@ -8,7 +8,9 @@ module.exports = (sequelize, DataTypes) => {
     pdf_url: DataTypes.TEXT,
     sub_title: DataTypes.TEXT,
     feature: DataTypes.TEXT,
-    image_url: DataTypes.TEXT
+    image_url: DataTypes.TEXT,
+    is_index: DataTypes.BOOLEAN,
+    is_new: DataTypes.BOOLEAN
   }, {
     timestamps: true,
     paranoid: true,

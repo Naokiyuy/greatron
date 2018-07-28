@@ -6,7 +6,7 @@ import * as actionCreators from './listProductsReducer';
 
 @reduxForm({
   form: 'productqueryform',
-  fields: ['category', 'name']
+  fields: ['category', 'name', 'isNew', 'isIndex']
 }, state => ({
   listproducts: state.backend.productlist.list
 }), dispatch => bindActionCreators(actionCreators, dispatch))
@@ -26,7 +26,7 @@ export default class ListProducts extends Component {
   searchProducts = () => setTimeout(() => this.props.searchProducts(this.props.values), 0);
 
   render() {
-    const {listproducts, handleSubmit, searchProducts, resetSearch, fields: {category, name}} = this.props;
+    const {listproducts, handleSubmit, searchProducts, resetSearch, fields: {category, name, isNew, isIndex}} = this.props;
     return (
       <div className="backend_wrapper">
         <Link to="/backend/add-product" className="addproduct"><i className="fa fa-plus"/> Add Product</Link>
@@ -38,6 +38,8 @@ export default class ListProducts extends Component {
                 <thead>
                 <tr>
                   <th>Image</th>
+                  <th>Index Products</th>
+                  <th>New Product</th>
                   <th>Category</th>
                   <th>Name</th>
                   <th>Description</th>
@@ -47,6 +49,18 @@ export default class ListProducts extends Component {
                 </tr>
                 <tr>
                   <th/>
+                  <th>
+                    <select {...isIndex}>
+                      <option value=""></option>
+                      <option value="true">Index Product</option>
+                    </select>
+                  </th>
+                  <th>
+                    <select {...isNew}>
+                      <option value=""></option>
+                      <option value="true">New Product</option>
+                    </select>
+                  </th>
                   <th>
                     <select className="index_1" {...category}>
                       <option value=""></option>
@@ -69,20 +83,18 @@ export default class ListProducts extends Component {
                 {listproducts && listproducts.map(p =>
                   <tr>
                     <td width="10%" valign="top"><img src={`/upload/${p.image_url}`} alt=""/></td>
+                    <td>{p.is_index && <i className="far fa-2x fa-check-circle"/>}</td>
+                    <td>{p.is_new && <i className="far fa-2x fa-check-circle"/>}</td>
                     <td width="10%" valign="top">{p.product_category}</td>
                     <td width="10%" valign="top">{p.product_name}</td>
-                    <td width="20%">{p.product_desc}</td>
-                    <td width="25%" valign="top">{p.product_spec}</td>
+                    <td width="20%">
+                      <div dangerouslySetInnerHTML={{__html: p.product_desc}} />
+                    </td>
                     <td width="25%" valign="top">
-                      <h6>Feature</h6>
-                      <p>{p.feature}</p>
-
-                      <p>Contact Person:</p>
-                      <p>e-mail: carsonhuang@gec-powersupply.com</p>
-                      <p>e-mail: gechuang@ms3.hinet.net</p>
-                      <p>Main Export Market</p>
-                      <p>Asia ,Australia ,Europe ,New Zealand ,United States of America</p>
-                      <p>Main Export Market</p>
+                      <div dangerouslySetInnerHTML={{__html: p.product_spec}} />
+                    </td>
+                    <td width="25%" valign="top">
+                      <div dangerouslySetInnerHTML={{__html: p.feature}} />
                     </td>
                     <td width="10%">
                       <div className="btn">

@@ -16,10 +16,6 @@ export default class Header extends Component {
           <div className="deskmenu">
             <ul>
               <li>
-                <Link to="/backend/index">HOME PRODUCTS</Link>
-                <div className="b_line"></div>
-              </li>
-              <li>
                 <Link to="/backend/list-products">PRODUCTS LIST</Link>
                 <div className="b_line"></div>
               </li>

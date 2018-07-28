@@ -84,7 +84,9 @@ function listProducts(req, res, next) {
 function queryProductByParameters(req, res, next) {
   const where = _.omitBy({
     product_category: req.query.category,
-    product_name: req.query.name
+    product_name: req.query.name,
+    is_index: req.query.isIndex,
+    is_new: req.query.isNew
   }, _.isUndefined);
   return Models.Product.findAndCountAll({where: where}).then(result => res.type('application/json').send(result)).catch(e => next(e));
 }
