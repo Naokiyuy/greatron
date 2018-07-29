@@ -34,7 +34,7 @@
     "mysql2": "^1.5.3",
     "nconf": "^0.8.4",
     "needle": "^1.0.0",
-    "nodemailer": "^4.6.4",
+    "nodemailer": "^4.6.7",
     "passport": "^0.4.0",
     "passport-local": "^1.0.0",
     "random-string": "^0.2.0",

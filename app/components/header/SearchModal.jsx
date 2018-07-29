@@ -46,7 +46,7 @@ export default class SearchModal extends Component {
               <div className="search_area">
                 <input type="text" placeholder="請輸入查詢值" {...search}/>
                 <button type="submit" className="submit">查詢</button>
-                <button type="button" onClick={closeSearchModal}>關閉</button>
+                <button type="button" className="close" onClick={closeSearchModal}>關閉</button>
               </div>
             </div>
           </div>

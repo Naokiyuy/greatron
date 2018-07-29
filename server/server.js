@@ -12,6 +12,7 @@ import passport from 'passport';
 import productController from './api/product/controllers/product-controller';
 import userController from './api/user/controllers/user-controller';
 import utilsController from './api/utils/controllers/utils-controller';
+import mailController from './api/mail/controllers/mail-controller';
 
 import Models from './models';
 
@@ -95,6 +96,7 @@ app.use(fileUpload({limits: {fileSize: 50 * 1024 * 1024}}));
 productController.routes(app);
 userController.routes(app);
 utilsController.routes(app);
+mailController.routes(app);
 
 Models.Product.sequelize.sync().then(function() {
   console.log('database sync.');

@@ -1,8 +1,8 @@
 {
   "apps": [
   {
-    "name": "council",
-    "script": "/vol/web/council/server/server.js",
+    "name": "greatron",
+    "script": "/vol/web/greatron/server/server.js",
     "watch": true,
     "exec_interpreter": "/usr/bin/babel-node",
     "merge_logs": true,
