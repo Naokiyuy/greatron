@@ -84,7 +84,10 @@ function listProducts(req, res, next) {
 function queryProductByParameters(req, res, next) {
   const where = _.omitBy({
     product_category: req.query.category,
-    product_name: req.query.name,
+    product_name: Models.sequelize.where(
+      Models.sequelize.fn('LOWER', Models.sequelize.col('product_name')),
+      'LIKE', `%${req.query.name ? req.query.name.toLowerCase() : ''}%`
+    ),
     is_index: req.query.isIndex,
     is_new: req.query.isNew
   }, _.isUndefined);

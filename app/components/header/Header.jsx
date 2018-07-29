@@ -1,60 +1,70 @@
 import React, {Component} from 'react';
 import {Link} from "react-router";
+import {connect} from 'react-redux';
+import {bindActionCreators} from 'redux';
+import {openSearchModal} from './searchModalReducer';
+import SearchModal from './SearchModal';
 
+@connect(state => ({
+
+}), dispatch => bindActionCreators({openSearchModal}, dispatch))
 export default class Header extends Component {
   render() {
+    const {openSearchModal} = this.props;
     return (
-      <div className="header_wrapper">
-        <header>
-          <div className="logo"><img src={require('../../assets/img/logo.png')} alt=""/></div>
-          <div className="deskmenu">
-            <ul>
-              <li>
-                <Link to="/">HOME</Link>
-                <div className="b_line"></div>
-              </li>
+      <React.Fragment>
+        <div className="header_wrapper">
+          <header>
+            <div className="logo"><img src={require('../../assets/img/logo.png')} alt=""/></div>
+            <div className="deskmenu">
+              <ul>
+                <li>
+                  <Link to="/">HOME</Link>
+                  <div className="b_line"></div>
+                </li>
 
-              <li>
-                <Link to="/products">PRODUCTS</Link>
-                <div className="b_line"></div>
-                <ul className="dropdown ">
-                  <li><a href="#">DESK TOP</a></li>
-                  <li><a href="#">WALL PLUG</a></li>
-                  <li><a href="#">USB CHARGER</a></li>
-                  <li><a href="#">WIRELESS </a></li>
-                </ul>
+                <li>
+                  <Link to="/products">PRODUCTS</Link>
+                  <div className="b_line"></div>
+                  <ul className="dropdown ">
+                    <li><Link to="/products/DESKTOP">DESK TOP</Link></li>
+                    <li><Link to="/products/WALLPLUG">WALL PLUG</Link></li>
+                    <li><Link to="/products/USBCHARGER">USB CHARGER</Link></li>
+                    <li><Link to="/products/WIRELESS">WIRELESS </Link></li>
+                  </ul>
 
-              </li>
-              <li><Link to="/aboutus">ABOUT US</Link>
-                <div className="b_line"></div>
-              </li>
-              <li><Link to="/contactus">CONTACT US</Link>
-                <div className="b_line"></div>
-              </li>
+                </li>
+                <li><Link to="/aboutus">ABOUT US</Link>
+                  <div className="b_line"></div>
+                </li>
+                <li><Link to="/contactus">CONTACT US</Link>
+                  <div className="b_line"></div>
+                </li>
 
-              <li><a href="" className="search_site trigger-custom" data-iziModal-open="#modal-search-site">
-                <i className="fas fa-search"/></a></li>
-              <li><a href=""><i className="far fa-envelope"/></a></li>
-            </ul>
-          </div>
-          <div className="hamburg">
-            <span className="aaa"></span>
-            <span className="bbb"></span>
-            <span className="ccc"></span>
-          </div>
-          <div className="aside">
-            <ul>
-              <li><a href="" className="m-first">HOME</a></li>
-              <li><a href="" className="m-first">PRODUCTS</a></li>
-              <li><a href="" className="m-first">ABOUT US</a></li>
-              <li><a href="" className="m-first">CONTACT US</a></li>
-              <li><a href="" className="m-first"><i className="fas fa-search"></i></a></li>
-              <li><a href="" className="m-first"><i className="far fa-envelope"></i></a></li>
-            </ul>
+                <li><a href="javascript:;" className="search_site trigger-custom" data-iziModal-open="#modal-search-site" onClick={openSearchModal}>
+                  <i className="fas fa-search"/></a></li>
+              </ul>
+            </div>
+            <div className="hamburg">
+              <span className="aaa"></span>
+              <span className="bbb"></span>
+              <span className="ccc"></span>
+            </div>
+            <div className="aside">
+              <ul>
+                <li><a href="" className="m-first">HOME</a></li>
+                <li><a href="" className="m-first">PRODUCTS</a></li>
+                <li><a href="" className="m-first">ABOUT US</a></li>
+                <li><a href="" className="m-first">CONTACT US</a></li>
+                <li><a href="" className="m-first"><i className="fas fa-search"></i></a></li>
+                <li><a href="" className="m-first"><i className="far fa-envelope"></i></a></li>
+              </ul>
 
-          </div>
-        </header>
-      </div>
+            </div>
+          </header>
+        </div>
+        <SearchModal/>
+      </React.Fragment>
     );
   }
 }
