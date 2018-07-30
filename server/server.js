@@ -19,7 +19,7 @@ import Models from './models';
 const env = process.env.NODE_ENV || 'development';
 const isDev = env === 'development';
 const app = express();
-app.use(cookieParser('council'));
+app.use(cookieParser('greatron'));
 
 function checkAuth(req, res, next) {
   if (req.url.indexOf('/backend') > -1 && req.url.indexOf('/backend/login') <= -1 && (!req.session || !req.session.authenticated)) {

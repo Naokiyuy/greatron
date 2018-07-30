@@ -42,7 +42,7 @@ const getPlugins = function () {
 
 const getEntry = function () {
   return {
-    common: ['react', 'react-dom', 'react-intl', 'react-redux', 'react-router', 'react-router-redux', 'jquery', 'bootstrap', 'lodash', 'moment', 'intl'],
+    common: ['react', 'react-dom', 'react-redux', 'react-router', 'react-router-redux', 'lodash', 'moment'],
     app: ['babel-polyfill', path.join(__dirname, 'app/index.js')]
   }
 };

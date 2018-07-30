@@ -5,7 +5,7 @@ import {reduxForm} from 'redux-form';
 import * as actionCreators from './addorEditProductReducer';
 import FileUpload from '../../utils/fileupload/FileUpload';
 
-import { EditorState, convertToRaw, ContentState } from 'draft-js';
+import { convertToRaw } from 'draft-js';
 import { Editor } from 'react-draft-wysiwyg';
 import draftToHtml from 'draftjs-to-html';
 
@@ -18,17 +18,23 @@ import draftToHtml from 'draftjs-to-html';
   destroyOnUnmount: true
 }, state => ({
   isEditing: state.backend.productaddoredit.isEditing,
-  product: state.backend.productaddoredit.product
+  product: state.backend.productaddoredit.product,
+  editingProduct: state.backend.productaddoredit.editingProduct
 }), dispatch => bindActionCreators(actionCreators, dispatch))
 export default class AddorEditProduct extends Component {
+  constructor(props) {
+    super(props);
+  }
+
   componentWillMount() {
-    const {params, product, queryProduct, editProduct} = this.props;
+    const {params, product, queryProduct, editProduct, createProduct} = this.props;
     if (params.id) {
       editProduct();
       queryProduct(params.id).then(r => {
-        this.props.initializeForm(this.props.product);
+        this.props.initializeForm(this.props.editingProduct);
       });
     } else {
+      createProduct();
       this.props.initializeForm(product);
     }
   }
@@ -54,7 +60,7 @@ export default class AddorEditProduct extends Component {
 
   render() {
     const {
-      handleSubmit, addProduct, isEditing,
+      handleSubmit, isEditing,
       fields: {
         id, product_category, product_name, product_desc, productDescEditor, product_spec, productSpecEditor,
         pdf_url, sub_title, feature, featureEditor, image_url, is_new, is_index

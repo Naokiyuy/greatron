@@ -42,10 +42,10 @@ export default class Products extends Component {
                   <Link to={`/products/${p.product_category}/details/${p.id}`}>
                     <h6>{p.product_name}</h6>
                   </Link>
-                  <p>{p.product_desc}</p>
+                  <div dangerouslySetInnerHTML={{__html: p.product_desc}} />
 
                   <div className="spec">
-                    <p>{p.product_spec}</p>
+                    <div dangerouslySetInnerHTML={{__html: p.product_spec}} />
                   </div>
                 </div>
               </div>

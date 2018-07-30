@@ -27,7 +27,7 @@ function signin(req, res, next) {
       }
 
       req.session.authenticated = true;
-      return res.type('application/json').send({status: 200, pathname: '/backend/list-products'});
+      return res.type('application/json').send({status: 200, user: user, pathname: '/backend/list-products'});
     });
   })(req, res, next);
 }

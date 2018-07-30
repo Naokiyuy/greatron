@@ -2,10 +2,11 @@ const ADD_PRODUCT = 'greatron/backend/ADD_PRODUCT';
 const ADD_PRODUCT_SUCCESS = 'greatron/backend/ADD_PRODUCT_SUCCESS';
 const QUERY_PRODUCT = 'greatron/backend/QUERY_PRODUCT';
 const QUERY_PRODUCT_SUCCESS = 'greatron/backend/QUERY_PRODUCT_SUCCESS';
+const CREATE_PRODUCT = 'greatron/backend/CREATE_PRODUCT';
 const EDIT_PRODUCT = 'greatron/backend/EDIT_PRODUCT';
 const UPDATE_PRODUCT = 'greatron/backend/UPDATE_PRODUCT';
 const UPDATE_PRODUCT_SUCCESS = 'greatron/backend/UPDATE_PRODUCT_SUCCESS';
-import { EditorState, convertToRaw, ContentState } from 'draft-js';
+import { EditorState, ContentState } from 'draft-js';
 import htmlToDraft from 'html-to-draftjs';
 
 const initialState = {
@@ -23,11 +24,17 @@ const initialState = {
     feature: '',
     featureEditor: EditorState.createEmpty(),
     imageUrl: ''
-  }
+  },
+  editingProduct: {}
 };
 
 export default function reducer(state = initialState, action = {}) {
   switch (action.type) {
+    case CREATE_PRODUCT:
+      return {
+        ...state,
+        isEditing: false
+      };
     case ADD_PRODUCT_SUCCESS:
       return {
         ...state,
@@ -49,7 +56,7 @@ export default function reducer(state = initialState, action = {}) {
       const featureFromHtml = htmlToDraft(action.product.feature || '');
       return {
         ...state,
-        product: {
+        editingProduct: {
           ...action.product,
           productDescEditor: EditorState.createWithContent(ContentState.createFromBlockArray(productDescFromHtml.contentBlocks, productDescFromHtml.entityMap)),
           productSpecEditor: EditorState.createWithContent(ContentState.createFromBlockArray(productSpecFromHtml.contentBlocks, productSpecFromHtml.entityMap)),
@@ -62,7 +69,6 @@ export default function reducer(state = initialState, action = {}) {
 }
 
 export function addProduct(values) {
-  console.log(values);
   return dispatch => {
     dispatch({type: ADD_PRODUCT});
     return fetch('/api/products/create', {
@@ -92,6 +98,12 @@ export function queryProduct(id) {
       credentials: 'same-origin'
     }).then(response => response.json())
       .then(json => dispatch({type: QUERY_PRODUCT_SUCCESS, product: json}));
+  };
+}
+
+export function createProduct() {
+  return {
+    type: CREATE_PRODUCT
   };
 }
 

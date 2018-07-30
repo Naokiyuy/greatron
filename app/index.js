@@ -32,17 +32,16 @@ if (queryStr != '') {
 let store = configureStore();
 const history = syncHistoryWithStore(browserHistory, store);
 const authenticate = (nextState, replace) => {
-  if (localStorage) {
-    const isLogin = localStorage.getItem('isLogged');
-
-    if (isLogin !== 'true') {
-      const location = nextState.location;
+  const state = store.getState();
+  if (!state.backend.login.user) {
+    const location = nextState.location;
+    if (location.pathname !== '/backend/login') {
       let nextPath = nextState.location.pathname;
       if (location.search) {
         nextPath += '?' + queryString.stringify(location.query);
       }
       replace({
-        pathname: '/login',
+        pathname: '/backend/login',
         query: {nextPath}
       });
     }
@@ -70,12 +69,12 @@ ReactDOM.render(
           <Route name="About Us" path="/aboutus" component={(props) => dynamicImport(props, './frontend/aboutus/AboutUs')}/>
           <Route name="Contact Us" path="/contactus" component={(props) => dynamicImport(props, './frontend/contactus/ContactUs')}/>
         </Route>
-        <Route name="" path="/backend" component={(props) => dynamicImport(props, './backend/home/Home')}>
+        <Route name="" path="/backend" component={(props) => dynamicImport(props, './backend/home/Home')} onEnter={authenticate}>
           <IndexRoute component={(props) => dynamicImport(props, './backend/content/ListProducts')}/>
           <Route name="Login" path="/backend/login" component={(props) => dynamicImport(props, './backend/content/Login')}/>
           <Route name="List Products" path="/backend/list-products" component={(props) => dynamicImport(props, './backend/content/ListProducts')}/>
           <Route name="Add Product" path="/backend/add-product" component={(props) => dynamicImport(props, './backend/content/AddorEditProduct')}/>
-          <Route name="Add Product" path="/backend/edit-product/:id" component={(props) => dynamicImport(props, './backend/content/AddorEditProduct')}/>
+          <Route name="Edit Product" path="/backend/edit-product/:id" component={(props) => dynamicImport(props, './backend/content/AddorEditProduct')}/>
         </Route>
       </Route>
     </Router>

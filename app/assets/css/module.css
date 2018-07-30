@@ -512,6 +512,12 @@ a {
     float: left;
     margin-left: 2.77778%;
     margin-right: 2.77778%;
+    padding: 0 20px; }
+  .main_content .search_result {
+    width: 94.44444%;
+    float: left;
+    margin-left: 2.77778%;
+    margin-right: 2.77778%;
     padding: 0 20px; } }
 
 @media (min-width: 991px) {
@@ -532,6 +538,12 @@ a {
     padding: 0 20px; }
   .main_content .content {
     width: 72.91667%;
+    float: left;
+    margin-left: 1.04167%;
+    margin-right: 1.04167%;
+    padding: 0 20px; }
+  .main_content .search_result {
+    width: 97.91667%;
     float: left;
     margin-left: 1.04167%;
     margin-right: 1.04167%;
@@ -1598,6 +1610,12 @@ a {
 .product-item table tr {
   border-bottom: 1px solid #c0c0c0; }
 
+.product-item table tr th {
+  padding: 10px;
+  vertical-align: top;
+  color: #888;
+  font-size: 14px; }
+
 .product-item table tr td {
   padding: 10px;
   vertical-align: top;
@@ -1752,6 +1770,30 @@ a {
   justify-content: center;
   -ms-flex-align: center;
   align-items: center; }
+
+.addproduct {
+  display: block;
+  width: 200px;
+  height: 50px;
+  border: 1px solid #c0c0c0;
+  font-size: 16px;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -ms-flex-align: center;
+  align-items: center;
+  margin-bottom: 20px;
+  transition: all .3s; }
+
+.addproduct svg {
+  margin-right: 10px; }
+
+.addproduct:hover {
+  background: #222;
+  color: #FFF; }
 
 body {
   background: #FFF;
@@ -2088,7 +2130,7 @@ a {
     background: rgba(47, 148, 0, 0.7);
     border-bottom: 1px solid rgba(255, 255, 255, 0.3);
     line-height: 1.5;
-    font-size: 13px;
+    font-size: 16px;
     padding: 10px 0;
     text-align: center;
     transition: all .3s; }

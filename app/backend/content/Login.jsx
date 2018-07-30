@@ -6,7 +6,9 @@ import * as actionCreators from './longinReducer';
 @reduxForm({
   form: 'loginform',
   fields: ['email', 'password']
-}, state => ({}), dispatch => bindActionCreators(actionCreators, dispatch))
+}, state => ({
+
+}), dispatch => bindActionCreators(actionCreators, dispatch))
 export default class Login extends Component {
   render() {
     const {handleSubmit, login, fields: {email, password}} = this.props;
