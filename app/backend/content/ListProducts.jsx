@@ -40,9 +40,6 @@ export default class ListProducts extends Component {
                 <th>New Product</th>
                 <th>Category</th>
                 <th>Name</th>
-                <th>Description</th>
-                <th>Spec.</th>
-                <th>Feature(others)</th>
                 <th>Actions</th>
               </tr>
               <tr>
@@ -69,9 +66,6 @@ export default class ListProducts extends Component {
                   </select>
                 </th>
                 <th><input className="index_1" type="text" {...name}/></th>
-                <th/>
-                <th/>
-                <th/>
                 <th>
                   <button type="button" onClick={resetSearch}>Reset</button>
                 </th>
@@ -85,15 +79,6 @@ export default class ListProducts extends Component {
                   <td>{p.is_new && <i className="far fa-2x fa-check-circle"/>}</td>
                   <td width="10%" valign="top">{p.product_category}</td>
                   <td width="10%" valign="top">{p.product_name}</td>
-                  <td width="20%">
-                    <div dangerouslySetInnerHTML={{__html: p.product_desc}}/>
-                  </td>
-                  <td width="25%" valign="top">
-                    <div dangerouslySetInnerHTML={{__html: p.product_spec}}/>
-                  </td>
-                  <td width="25%" valign="top">
-                    <div dangerouslySetInnerHTML={{__html: p.feature}}/>
-                  </td>
                   <td width="10%">
                     <div className="btn">
                       <Link className="edit" to={`/backend/edit-product/${p.id}`}>編輯</Link>
