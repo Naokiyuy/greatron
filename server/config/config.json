@@ -2,8 +2,10 @@
   "development": {
     "database": "greatron",
     "username": "greatron",
+    "user": "greatron",
     "password": "greatron",
     "host": "localhost",
+    "port": 3306,
     "dialect": "mysql",
     "operatorsAliases": false,
 
@@ -17,8 +19,10 @@
   "production": {
     "database": "greatron",
     "username": "greatron",
+    "user": "greatron",
     "password": "greatron",
     "host": "localhost",
+    "port": 3306,
     "dialect": "mysql",
     "operatorsAliases": false,
 

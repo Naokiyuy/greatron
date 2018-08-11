@@ -1,5 +1,6 @@
 import express from 'express';
 import session from 'express-session';
+var MySQLStore = require('express-mysql-session')(session);
 import http from 'http';
 import path from 'path';
 import cookieParser from 'cookie-parser';
@@ -15,6 +16,7 @@ import utilsController from './api/utils/controllers/utils-controller';
 import mailController from './api/mail/controllers/mail-controller';
 
 import Models from './models';
+import config from './config/config';
 
 const env = process.env.NODE_ENV || 'development';
 const isDev = env === 'development';
@@ -28,6 +30,8 @@ function checkAuth(req, res, next) {
 
   next();
 }
+
+var sessionStore = new MySQLStore(config[env]);
 
 if (isDev) {
   // const favicon = require('serve-favicon');
@@ -61,6 +65,7 @@ if (isDev) {
       maxAge: 86400000,
       path: '/'
     },
+    store: sessionStore,
     saveUninitialized: false,
     resave: false
   }));
@@ -73,14 +78,15 @@ if (isDev) {
       maxAge: 86400000,
       path: '/'
     },
+    store: sessionStore,
     saveUninitialized: false,
     resave: false
   }));
 }
 
 app.use(connectTimeout(300000));
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({extended: true}));
+app.use(bodyParser.json({limit: '20mb'}));
+app.use(bodyParser.urlencoded({extended: false, limit: '20mb'}));
 app.use(checkAuth);
 
 // passport

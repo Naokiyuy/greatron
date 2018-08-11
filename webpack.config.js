@@ -35,7 +35,8 @@ const getPlugins = function () {
     new MiniCssExtractPlugin({
       filename: "[name].css",
       chunkFilename: "[id].css"
-    })
+    }),
+    new webpack.NoEmitOnErrorsPlugin()
   ];
 };
 

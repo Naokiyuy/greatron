@@ -6,8 +6,8 @@ const CREATE_PRODUCT = 'greatron/backend/CREATE_PRODUCT';
 const EDIT_PRODUCT = 'greatron/backend/EDIT_PRODUCT';
 const UPDATE_PRODUCT = 'greatron/backend/UPDATE_PRODUCT';
 const UPDATE_PRODUCT_SUCCESS = 'greatron/backend/UPDATE_PRODUCT_SUCCESS';
-import { EditorState, ContentState } from 'draft-js';
-import htmlToDraft from 'html-to-draftjs';
+// import { EditorState, ContentState } from 'draft-js';
+// import htmlToDraft from 'html-to-draftjs';
 
 const initialState = {
   isEditing: false,
@@ -16,13 +16,13 @@ const initialState = {
     product_category: 'DESKTOP',
     product_name: '',
     product_desc: '',
-    productDescEditor: EditorState.createEmpty(),
+    // productDescEditor: EditorState.createEmpty(),
     product_spec: '',
-    productSpecEditor: EditorState.createEmpty(),
+    // productSpecEditor: EditorState.createEmpty(),
     pdfUrl: '',
     subTitle: '',
     feature: '',
-    featureEditor: EditorState.createEmpty(),
+    // featureEditor: EditorState.createEmpty(),
     imageUrl: ''
   },
   editingProduct: {}
@@ -51,16 +51,16 @@ export default function reducer(state = initialState, action = {}) {
         product: action.product
       };
     case QUERY_PRODUCT_SUCCESS:
-      const productDescFromHtml = htmlToDraft(action.product.product_desc || '');
-      const productSpecFromHtml = htmlToDraft(action.product.product_spec || '');
-      const featureFromHtml = htmlToDraft(action.product.feature || '');
+      // const productDescFromHtml = htmlToDraft(action.product.product_desc || '');
+      // const productSpecFromHtml = htmlToDraft(action.product.product_spec || '');
+      // const featureFromHtml = htmlToDraft(action.product.feature || '');
       return {
         ...state,
         editingProduct: {
           ...action.product,
-          productDescEditor: EditorState.createWithContent(ContentState.createFromBlockArray(productDescFromHtml.contentBlocks, productDescFromHtml.entityMap)),
-          productSpecEditor: EditorState.createWithContent(ContentState.createFromBlockArray(productSpecFromHtml.contentBlocks, productSpecFromHtml.entityMap)),
-          featureEditor: EditorState.createWithContent(ContentState.createFromBlockArray(featureFromHtml.contentBlocks, featureFromHtml.entityMap)),
+          // productDescEditor: EditorState.createWithContent(ContentState.createFromBlockArray(productDescFromHtml.contentBlocks, productDescFromHtml.entityMap)),
+          // productSpecEditor: EditorState.createWithContent(ContentState.createFromBlockArray(productSpecFromHtml.contentBlocks, productSpecFromHtml.entityMap)),
+          // featureEditor: EditorState.createWithContent(ContentState.createFromBlockArray(featureFromHtml.contentBlocks, featureFromHtml.entityMap)),
         }
       };
     default:

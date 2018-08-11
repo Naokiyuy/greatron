@@ -3,10 +3,12 @@ import {Link} from 'react-router';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import * as actionCreators from './productsReducer';
-import ProductList from "./components/ProductList";
+import ProductList from "./components/ProductList"
+import Pagination from "./components/Pagination";
 
 @connect(state => ({
-  products: state.frontend.products.products
+  products: state.frontend.products.products,
+  grid: state.frontend.products.grid
 }), dispatch => bindActionCreators(actionCreators, dispatch))
 export default class Products extends Component {
   componentWillMount() {
@@ -18,7 +20,7 @@ export default class Products extends Component {
   }
 
   render() {
-    const {products, params} = this.props;
+    const {products, params, grid, page} = this.props;
     if (!products) {
       return false;
     }
@@ -51,17 +53,7 @@ export default class Products extends Component {
               </div>
             )}
           </div>
-
-          <div className="pages">
-            <a href=""> <i className="fa fa-angle-left" aria-hidden="true"></i> </a>
-            <a href="" className="mainblue">1</a>
-            <a href="">2</a>
-            <a href="">3</a>
-            <a href="">4</a>
-            <a href="">5</a>
-            <a href="">6</a>
-            <a href=""> <i className="fa fa-angle-right" aria-hidden="true"></i> </a>
-          </div>
+          <Pagination grid={grid} clickCallback={page}/>
         </div>
       </React.Fragment>
     );

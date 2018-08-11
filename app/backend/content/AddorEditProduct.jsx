@@ -5,9 +5,8 @@ import {reduxForm} from 'redux-form';
 import * as actionCreators from './addorEditProductReducer';
 import FileUpload from '../../utils/fileupload/FileUpload';
 
-import { convertToRaw } from 'draft-js';
-import { Editor } from 'react-draft-wysiwyg';
-import draftToHtml from 'draftjs-to-html';
+import ReactQuill from 'react-quill';
+import 'react-quill/dist/quill.snow.css';
 
 @reduxForm({
   form: 'addoreditproductform',
@@ -53,9 +52,13 @@ export default class AddorEditProduct extends Component {
     });
   };
 
-  onChange = (value, textField, editor) => {
+  onTextChange = (value, textField, editor) => {
     editor.onChange(value);
     textField.onChange(draftToHtml(convertToRaw(value.getCurrentContent())));
+  };
+
+  handleChange = (v, f) => {
+    f.onChange(v);
   };
 
   render() {
@@ -91,24 +94,12 @@ export default class AddorEditProduct extends Component {
             </div>
             <div className="backend_row">
               <div className="upload_content">
-                <Editor id={"description"}
-                        editorState={productDescEditor.value}
-                        toolbarClassName="toolbarClassName"
-                        wrapperClassName="wrapperClassName"
-                        editorClassName="editorClassName"
-                        onEditorStateChange={(v) => this.onChange(v, product_desc, productDescEditor)}
-                />
+                <ReactQuill value={product_desc.value} onChange={v => this.handleChange(v, product_desc)} />
               </div>
             </div>
             <div className="backend_row">
               <div className="upload_content">
-                <Editor id={"spec"}
-                        editorState={productSpecEditor.value}
-                        toolbarClassName="toolbarClassName"
-                        wrapperClassName="wrapperClassName"
-                        editorClassName="editorClassName"
-                        onEditorStateChange={(v) => this.onChange(v, product_spec, productSpecEditor)}
-                />
+                <ReactQuill value={product_spec.value} onChange={v => this.handleChange(v, product_spec)} />
               </div>
             </div>
             <div className="backend_row">
@@ -122,13 +113,7 @@ export default class AddorEditProduct extends Component {
             </div>
             <div className="backend_row">
               <div className="upload_content">
-                <Editor id={"spec"}
-                        editorState={featureEditor.value}
-                        toolbarClassName="toolbarClassName"
-                        wrapperClassName="wrapperClassName"
-                        editorClassName="editorClassName"
-                        onEditorStateChange={(v) => this.onChange(v, feature, featureEditor)}
-                />
+                <ReactQuill value={feature.value} onChange={v => this.handleChange(v, feature)} />
               </div>
             </div>
             <div className="backend_row">

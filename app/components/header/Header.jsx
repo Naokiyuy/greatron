@@ -4,11 +4,20 @@ import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import {openSearchModal} from './searchModalReducer';
 import SearchModal from './SearchModal';
+import $ from 'jquery';
 
 @connect(state => ({
 
 }), dispatch => bindActionCreators({openSearchModal}, dispatch))
 export default class Header extends Component {
+  componentDidMount() {
+    let aside = this.aside;
+    $(this.hamburg).click(function(){
+      $(aside).delay(200).toggleClass("hamburg-open");
+      $(this).delay(200).toggleClass("cross");
+    });
+  }
+
   render() {
     const {openSearchModal} = this.props;
     return (
@@ -45,17 +54,17 @@ export default class Header extends Component {
                   <i className="fas fa-search"/></a></li>
               </ul>
             </div>
-            <div className="hamburg">
+            <div className="hamburg" ref={n => this.hamburg = n}>
               <span className="aaa"></span>
               <span className="bbb"></span>
               <span className="ccc"></span>
             </div>
-            <div className="aside">
+            <div className="aside" ref={r => this.aside = r}>
               <ul>
-                <li><a href="" className="m-first">HOME</a></li>
-                <li><a href="" className="m-first">PRODUCTS</a></li>
-                <li><a href="" className="m-first">ABOUT US</a></li>
-                <li><a href="" className="m-first">CONTACT US</a></li>
+                <li><Link to="/" className="m-first">HOME</Link></li>
+                <li><Link to="/products" className="m-first">PRODUCTS</Link></li>
+                <li><Link to="/aboutus" className="m-first">ABOUT US</Link></li>
+                <li><Link to="/contactus" className="m-first">CONTACT US</Link></li>
                 <li><a href="" className="m-first"><i className="fas fa-search"></i></a></li>
                 <li><a href="" className="m-first"><i className="far fa-envelope"></i></a></li>
               </ul>

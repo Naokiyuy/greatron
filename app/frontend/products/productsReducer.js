@@ -6,6 +6,7 @@ const QUERY_PRODUCTS_CATEGORY = 'greatron/frontend/QUERY_PRODUCTS_CATEGORY';
 const QUERY_PRODUCTS_CATEGORY_SUCCESS = 'greatron/frontend/QUERY_PRODUCTS_CATEGORY_SUCCESS';
 const QUERY_PRODUCT = 'greatron/frontend/QUERY_PRODUCT';
 const QUERY_PRODUCT_SUCCESS = 'greatron/frontend/QUERY_PRODUCT_SUCCESS';
+const PAGE = 'greatron/frontend/products/category/PAGE';
 
 const initialState = {
   products: [],
@@ -16,7 +17,7 @@ const initialState = {
     pages: 1,
     pageSize: 5,
     offset: 0,
-    totalSize: 1
+    totalSize: 0
   }
 };
 
@@ -45,9 +46,24 @@ export default function reducer(state = initialState, action = {}) {
           category: action.category
         }
       };
+    case PAGE:
+      return {
+        ...state,
+        grid: {
+          ...state.grid,
+          page: action.page
+        }
+      };
     default:
       return {...state};
   }
+}
+
+export function page(params) {
+  return (dispatch) => {
+    dispatch({type: PAGE, page: params.selected + 1});
+    return dispatch(queryProducts());
+  };
 }
 
 export function setCategory(category) {
