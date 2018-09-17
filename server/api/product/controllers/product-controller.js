@@ -88,8 +88,8 @@ function queryProductByParameters(req, res, next) {
       Models.sequelize.fn('LOWER', Models.sequelize.col('product_name')),
       'LIKE', `%${req.query.name ? req.query.name.toLowerCase() : ''}%`
     ),
-    is_index: req.query.isIndex,
-    is_new: req.query.isNew
+    is_index: _.isUndefined(req.query.isIndex) ? undefined : 1,
+    is_new: _.isUndefined(req.query.isNew) ? undefined : 1
   }, _.isUndefined);
   return Models.Product.findAndCountAll({where: where}).then(result => res.type('application/json').send(result)).catch(e => next(e));
 }

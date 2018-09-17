@@ -19,6 +19,18 @@ export default class Header extends Component {
                 <Link to="/backend/list-products">PRODUCTS LIST</Link>
                 <div className="b_line"></div>
               </li>
+              <li>
+                <Link to="/backend/list-categories">CATEGORIES LIST</Link>
+                <div className="b_line"></div>
+              </li>
+              <li>
+                <Link to="/backend/aboutus">ABOUT US</Link>
+                <div className="b_line"></div>
+              </li>
+              <li>
+                <Link to="/backend/list-news">NEWS LIST</Link>
+                <div className="b_line"></div>
+              </li>
             </ul>
           </div>
           <div className="hamburg">
@@ -28,10 +40,11 @@ export default class Header extends Component {
           </div>
           <div className="aside">
             <ul>
-              <li><a href="" className="m-first">HOME</a></li>
-              <li><a href="" className="m-first">PRODUCTS</a></li>
-              <li><a href="" className="m-first">ABOUT US</a></li>
-              <li><a href="" className="m-first">CONTACT US</a></li>
+              <li><Link to="/backend" className="m-first">HOME</Link></li>
+              <li><Link to="/backend/list-products" className="m-first">PRODUCTS LIST</Link></li>
+              <li><Link to="/backend/list-categories" className="m-first">CATEGORIES</Link></li>
+              <li><Link to="/backend/aboutus" className="m-first">ABOUT US</Link></li>
+              <li><Link to="/backend/list-news" className="m-first">NEWS</Link></li>
             </ul>
 
           </div>

@@ -14,6 +14,7 @@ import productController from './api/product/controllers/product-controller';
 import userController from './api/user/controllers/user-controller';
 import utilsController from './api/utils/controllers/utils-controller';
 import mailController from './api/mail/controllers/mail-controller';
+import categoryController from './api/category/controllers/category-controller';
 
 import Models from './models';
 import config from './config/config';
@@ -103,6 +104,7 @@ productController.routes(app);
 userController.routes(app);
 utilsController.routes(app);
 mailController.routes(app);
+categoryController.routes(app);
 
 Models.Product.sequelize.sync().then(function() {
   console.log('database sync.');
