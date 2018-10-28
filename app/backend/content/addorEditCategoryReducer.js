@@ -26,7 +26,10 @@ export default function reducer(state = initialState, action = {}) {
     case ADD_CATEGORY_SUCCESS:
       return {
         ...state,
-        category: action.category
+        category: {
+          id: undefined,
+          category: '',
+        }
       };
     case EDIT_CATEGORY:
       return {

@@ -17,7 +17,7 @@ function routes(app) {
   app.all('/api/categories/create', controller.createCategory);
   app.all('/api/categories/update', controller.updateCategory);
   app.all('/api/categories/delete', controller.deleteCategory);
-  app.all('/api/categories/query', controller.queryCategoryById)
+  app.all('/api/categories/query', controller.queryCategoryById);
 }
 
 function listCategories(req, res, next) {

@@ -1,7 +1,7 @@
 module.exports = (sequelize, DataTypes) => {
   return sequelize.define('Product', {
     id: { type: DataTypes.BIGINT, autoIncrement: true, primaryKey: true },
-    product_category: DataTypes.ENUM('DESKTOP', 'WALLPLUG', 'USBCHARGER', 'WIRELESS'),
+    product_category: DataTypes.INTEGER,
     product_name: DataTypes.TEXT,
     product_desc: DataTypes.TEXT,
     product_spec: DataTypes.TEXT,

@@ -24,7 +24,7 @@ export default class Header extends Component {
                 <div className="b_line"></div>
               </li>
               <li>
-                <Link to="/backend/aboutus">ABOUT US</Link>
+                <Link to="/backend/list-aboutus">ABOUT US</Link>
                 <div className="b_line"></div>
               </li>
               <li>
@@ -43,7 +43,7 @@ export default class Header extends Component {
               <li><Link to="/backend" className="m-first">HOME</Link></li>
               <li><Link to="/backend/list-products" className="m-first">PRODUCTS LIST</Link></li>
               <li><Link to="/backend/list-categories" className="m-first">CATEGORIES</Link></li>
-              <li><Link to="/backend/aboutus" className="m-first">ABOUT US</Link></li>
+              <li><Link to="/backend/list-aboutus" className="m-first">ABOUT US</Link></li>
               <li><Link to="/backend/list-news" className="m-first">NEWS</Link></li>
             </ul>
 

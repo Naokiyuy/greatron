@@ -5,6 +5,8 @@ import productDetailReducer from './content/productDetailReducer';
 import addorEditProductReducer from './content/addorEditProductReducer';
 import listCategoriesReducer from './content/listCategoriesReducer';
 import addorEditCategoryReducer from './content/addorEditCategoryReducer';
+import listAboutusReducer from './content/listAboutusReducer';
+import addorEditAboutusReducer from './content/addorEditAboutusReducer';
 
 export default combineReducers({
   login: loginReducere,
@@ -12,5 +14,7 @@ export default combineReducers({
   productdetail: productDetailReducer,
   productaddoredit: addorEditProductReducer,
   categorylist: listCategoriesReducer,
-  categoryaddoredit: addorEditCategoryReducer
+  categoryaddoredit: addorEditCategoryReducer,
+  aboutuslist: listAboutusReducer,
+  aboutusaddoredit: addorEditAboutusReducer
 });

@@ -79,6 +79,10 @@ ReactDOM.render(
           <Route name="List Categories" path="/backend/list-categories" component={(props) => dynamicImport(props, './backend/content/ListCategories')}/>
           <Route name="Add Category" path="/backend/add-category" component={(props) => dynamicImport(props, './backend/content/AddorEditCategory')}/>
           <Route name="Edit Category" path="/backend/edit-category/:id" component={(props) => dynamicImport(props, './backend/content/AddorEditCategory')}/>
+
+          <Route name="List Aboutus" path="/backend/list-aboutus" component={(props) => dynamicImport(props, './backend/content/ListAboutus')}/>
+          <Route name="Add Aboutus" path="/backend/add-aboutus" component={(props) => dynamicImport(props, './backend/content/AddorEditAboutus')}/>
+          <Route name="Edit Aboutus" path="/backend/edit-aboutus/:id" component={(props) => dynamicImport(props, './backend/content/AddorEditAboutus')}/>
         </Route>
       </Route>
     </Router>
